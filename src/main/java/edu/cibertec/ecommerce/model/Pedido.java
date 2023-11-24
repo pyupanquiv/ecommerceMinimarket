@@ -70,5 +70,4 @@ public class Pedido {
 				+ fechaRecibida + ", total=" + total + "]";
 	}	
 	
-	
 }
