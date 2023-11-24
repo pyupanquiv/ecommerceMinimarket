@@ -1,12 +1,29 @@
 package edu.cibertec.ecommerce.model;
 
-public class DetallePedido {
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "detalle_pedido")
+public class DetallePedido {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nombre;
 	private double cantidad;
 	private double precio;
 	private double total;
+	
+	@OneToOne
+	private Pedido pedido;
+	
+	@ManyToOne
+	private Producto producto;
 	
 	public DetallePedido() {
 		
@@ -59,6 +76,25 @@ public class DetallePedido {
 
 	public void setTotal(double total) {
 		this.total = total;
+	}
+
+	
+	
+	
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	public void setPedido(Pedido pedido) {
+		this.pedido = pedido;
+	}
+
+	public Producto getProducto() {
+		return producto;
+	}
+
+	public void setProducto(Producto producto) {
+		this.producto = producto;
 	}
 
 	@Override
