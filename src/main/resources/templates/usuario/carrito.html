@@ -22,8 +22,9 @@
 <body>
 
   <!-- Navigation -->
- 
-    	<div th:include="usuario/template_usuario.html::header"></div>
+  	<div th:include="usuario/template_usuario.html::header" th:if="${sesion==null}"></div>
+		  
+	<div th:include="usuario/template_usuario.html::header-user" th:unless="${sesion==null}"> </div>
     	
     <!-- Page Content -->
     <div class="container">
@@ -60,7 +61,7 @@
                   <td th:text="${dpedido.precio}"></td>
                   <td th:text="${dpedido.cantidad}"></td>
                   <td th:text="${dpedido.total}"></td>
-                  <td><a href="#" class="btn btn-danger">Quitar</a></td>
+                  <td><a th:href="@{/delete/cart/{id}   (id=${dpedido.producto.id} )   }" class="btn btn-danger">Quitar</a></td>
                 </tr>
               </tbody>
             </table>
@@ -71,7 +72,7 @@
 
             <ul class="list-group">
               <li class="list-group-item"><h5 th:text="${pedido.total}">Total: $ 10</h5></li>
-              <a href="resumenorden.html" class="btn btn-dark">Ver Orden</a>
+              <a th:href="@{/pedidos}" class="btn btn-dark">Ver Pedido</a>
             </ul>
           </div>
 
