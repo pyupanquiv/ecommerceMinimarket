@@ -1,13 +1,14 @@
 package edu.cibertec.ecommerce.model;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -26,8 +27,8 @@ public class Pedido {
 	@ManyToOne
 	private Usuario usuario;
 	
-	@OneToOne(mappedBy = "pedido")
-	private DetallePedido detalle;
+	@OneToMany(mappedBy = "pedido")
+	private List<DetallePedido> detalle;
 	
 	public Pedido() {
 		// TODO Auto-generated constructor stub
@@ -94,11 +95,11 @@ public class Pedido {
 
 	
 	
-	public DetallePedido getDetalle() {
+	public List<DetallePedido> getDetalle() {
 		return detalle;
 	}
 
-	public void setDetalle(DetallePedido detalle) {
+	public void setDetalle(List<DetallePedido> detalle) {
 		this.detalle = detalle;
 	}
 

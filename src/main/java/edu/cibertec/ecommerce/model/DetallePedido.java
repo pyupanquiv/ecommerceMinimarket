@@ -5,11 +5,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "detalle_pedido")
+@Table(name = "detalles")
 public class DetallePedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,15 +26,6 @@ public class DetallePedido {
 	
 	public DetallePedido() {
 		
-	}
-
-	public DetallePedido(Integer id, String nombre, double cantidad, double precio, double total) {
-		super();
-		this.id = id;
-		this.nombre = nombre;
-		this.cantidad = cantidad;
-		this.precio = precio;
-		this.total = total;
 	}
 
 	public Integer getId() {
@@ -78,9 +68,6 @@ public class DetallePedido {
 		this.total = total;
 	}
 
-	
-	
-	
 	public Pedido getPedido() {
 		return pedido;
 	}
@@ -97,12 +84,22 @@ public class DetallePedido {
 		this.producto = producto;
 	}
 
+	public DetallePedido(Integer id, String nombre, double cantidad, double precio, double total, Pedido pedido,
+			Producto producto) {
+		this.id = id;
+		this.nombre = nombre;
+		this.cantidad = cantidad;
+		this.precio = precio;
+		this.total = total;
+		this.pedido = pedido;
+		this.producto = producto;
+	}
+
 	@Override
 	public String toString() {
 		return "DetallePedido [id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio
-				+ ", total=" + total + "]";
+				+ ", total=" + total + ", pedido=" + pedido + ", producto=" + producto + "]";
 	}
-	
-	
+
 	
 }

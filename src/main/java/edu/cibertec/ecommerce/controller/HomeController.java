@@ -27,6 +27,7 @@ import edu.cibertec.ecommerce.service.IPedidoService;
 import edu.cibertec.ecommerce.service.IUsuarioService;
 import edu.cibertec.ecommerce.service.ProductoService;
 import jakarta.servlet.http.HttpSession;
+import jakarta.websocket.Session;
 
 @Controller
 @RequestMapping("/")
@@ -57,9 +58,11 @@ public class HomeController {
 	public String home(Model model, HttpSession session) {
 		
 		log.info("Sesion del Usuario: {}", session.getAttribute("idusuario"));
+	
 		model.addAttribute("productos",productoService.findAll());
 		
-		model.addAttribute("sesion",session.getAttribute("idusuario"));
+		//session
+		model.addAttribute("sesion", session.getAttribute("idusuario"));
 		
 		return "usuario/home";
 	}
@@ -172,11 +175,12 @@ public class HomeController {
 		Date fechaActual = new Date();
 		pedido.setFechaCreacion(fechaActual);
 		pedido.setNumero(pedidoService.generarNumeroPedido());
-		
+		log.info("PEDIDO {}", pedido);
 		//Usuario que gnera la orden
 		Usuario usuario = usuarioService.findByid(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
 		
 		pedido.setUsuario(usuario);
+
 		pedidoService.save(pedido);
 		
 		// Guardar los detalles

@@ -56,7 +56,6 @@ public class ProductoController {
 		producto.setUsuario(u);
 
 		// Cargar Imagen
-		
 		if(producto.getId()==null) { // se crea un producto
 			String nombreImagen = upload.saveImage(file);
 			producto.setImagen(nombreImagen);
